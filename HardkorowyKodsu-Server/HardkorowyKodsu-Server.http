@@ -1,6 +1,6 @@
 @HardkorowyKodsu_Server_HostAddress = http://localhost:5286
 
-GET {{HardkorowyKodsu_Server_HostAddress}}/weatherforecast/
+# GET {{HardkorowyKodsu_Server_HostAddress}}/
 Accept: application/json
 
 ###
