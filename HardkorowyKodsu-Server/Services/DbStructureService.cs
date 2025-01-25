@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HardkorowyKodsu_Server.Model.DB;
 using HardkorowyKodsu_Server.Model.VOs;
 using HardkorowyKodsu_Server.Repos;
 using HardkorowyKodsu_Server.Repos.Interface;
@@ -18,8 +19,14 @@ namespace HardkorowyKodsu_Server.Services
 
         public DBStructureVo GetStructure()
         {
-            var dbStructure = _dbStructureRepository.GetStructure();
-            var mappedStructure = _mapper.Map<List<TableNameVo>>(dbStructure);
+            var getStructureTask = _dbStructureRepository.GetStructure();
+            getStructureTask.Wait();
+            var dbStructure = getStructureTask.Result;
+
+            var test = new List<TableNameVo>();
+            dbStructure.ForEach(x => test.Add(_mapper.Map<BaseTableNameModel, TableNameVo>(x)));
+
+            var mappedStructure = _mapper.Map<List<BaseTableNameModel>, List<TableNameVo>>(dbStructure);
 
             var dbStructureVo = new DBStructureVo
             {
@@ -31,7 +38,9 @@ namespace HardkorowyKodsu_Server.Services
 
         public TableDataVo GetTableData(int tableId)
         {
-            var tableData = _dbStructureRepository.GetTableData(tableId);
+            var getTableDataTask = _dbStructureRepository.GetTableData(tableId);
+            getTableDataTask.Wait();
+            var tableData = getTableDataTask.Result;
             var mappedTableData = _mapper.Map<TableDataVo>(tableData);
             return mappedTableData;
         }

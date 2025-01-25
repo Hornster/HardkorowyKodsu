@@ -1,4 +1,4 @@
-﻿namespace HardkorowyKodsu_Server.Model.DTOs
+﻿namespace HardkorowyKodsu_Server.Model.DB
 {
     public class BaseModel
     {

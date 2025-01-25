@@ -1,6 +1,6 @@
 ﻿using HardkorowyKodsu_Server.Model.VOs;
 
-namespace HardkorowyKodsu_Server.Model.DTOs
+namespace HardkorowyKodsu_Server.Model.DB
 {
     /// <summary>
     /// Represents a table in the database.
@@ -10,6 +10,6 @@ namespace HardkorowyKodsu_Server.Model.DTOs
         /// <summary>
         /// Structural description of the columns of the table.
         /// </summary>
-        public List<TableColumnVo> Columns { get; set; }
+        public List<TableColumnModel> Columns { get; set; }
     }
 }

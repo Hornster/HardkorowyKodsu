@@ -1,4 +1,4 @@
-﻿using HardkorowyKodsu_Server.Model.DTOs;
+﻿using HardkorowyKodsu_Server.Model.DB;
 
 namespace HardkorowyKodsu_Server.Repos.Interface
 {
@@ -8,12 +8,12 @@ namespace HardkorowyKodsu_Server.Repos.Interface
         /// Retrieves names of all tables and views in the database.
         /// </summary>
         /// <returns></returns>
-        List<TableNameModel> GetStructure();
+        Task<List<BaseTableNameModel>> GetStructure();
         /// <summary>
         /// Retrieves column data of a table.
         /// </summary>
         /// <param name="tableId">DB Id of the table.</param>
         /// <returns></returns>
-        TableDataModel GetTableData(int tableId);
+        Task<TableDataModel> GetTableData(int tableId);
     }
 }

@@ -1,16 +1,16 @@
-﻿namespace HardkorowyKodsu_Server.Model.VOs
+﻿using HardkorowyKodsu_Server.Model.DB;
+
+namespace HardkorowyKodsu_Server.Model.DB
 {
-    /// <summary>
-    /// A thin viewobject containing the name and type of a table, used to retrieve structure of table its instance refers to.
-    /// </summary>
-    public class TableNameVo : BaseVo
+    public abstract class BaseTableNameModel : BaseModel
     {
+
         /// <summary>
         /// The name of the table.
         /// </summary>
         public string Name { get; set; } = string.Empty;
         /// <summary>
-        /// The type of the table. View? Regular table?
+        /// The type of the object. In this case table. Used by viewobjects.
         /// </summary>
         public string Type { get; set; } = string.Empty;
         /// <summary>

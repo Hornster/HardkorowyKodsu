@@ -15,7 +15,7 @@ namespace HardkorowyKodsu_Server.Controllers
         {
             _dbStructureService = dbStructureService;
         }
-
+        [HttpGet]
         public TableDataVo Get(int tableId)
         {
             var tableData = _dbStructureService.GetTableData(tableId);
