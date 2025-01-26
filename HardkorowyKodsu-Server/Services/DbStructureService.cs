@@ -11,20 +11,24 @@ namespace HardkorowyKodsu_Server.Services
     {
         private readonly IDbStructureRepository _dbStructureRepository;
         private readonly ISchemaRepository _schemaRepository;
+        private readonly IDataTypesRepository _dataTypesRepository;
 
-        public DbStructureService(IMapper mapper, IDbStructureRepository dbStructureRepository, ISchemaRepository schemaRepository) : base(mapper)
+        public DbStructureService(IMapper mapper, IDbStructureRepository dbStructureRepository
+            , ISchemaRepository schemaRepository, IDataTypesRepository dataTypesRepository) : base(mapper)
         {
             _dbStructureRepository = dbStructureRepository;
             _schemaRepository = schemaRepository;
+            _dataTypesRepository = dataTypesRepository;
         }
 
 
+        /// <inheritdoc />
         public async Task<DBStructureVo> GetStructure()
         {
             var dbStructure = await _dbStructureRepository.GetStructureAsync();
             var schemas = await _schemaRepository.GetAllSchemasAsync();
 
-            var mappedStructure = _mapper.Map<List<BaseTableNameModel>, List<TableNameVo>>(dbStructure);
+            var mappedStructure = _mapper.Map<List<BaseTableModel>, List<TableNameVo>>(dbStructure);
             //sys.tables and sys.views require separate models but there is only one sys.schema.
             //Have to join them this way to get the schema name for each table instead of through EF.
             var tableNamesWithSchemas = from schema in schemas
@@ -43,13 +47,39 @@ namespace HardkorowyKodsu_Server.Services
 
             return dbStructureVo;
         }
-
-        public TableDataVo GetTableData(int tableId)
+        /// <inheritdoc />
+        public async Task<TableColumnsDataVo> GetTableColumnsDataAsync(int tableId)
         {
-            var getTableDataTask = _dbStructureRepository.GetTableData(tableId);
-            getTableDataTask.Wait();
-            var tableData = getTableDataTask.Result;
-            var mappedTableData = _mapper.Map<TableDataVo>(tableData);
+            var tableData = await _dbStructureRepository.GetTableColumnsAsync(tableId);
+
+            var mappedTableData = _mapper.Map<TableDataModel, TableColumnsDataVo>(tableData);
+
+            var columnUserTypeIds = mappedTableData.Columns.Select(c => c.UserTypeId).ToList();
+            var dataTypes = await _dataTypesRepository.GetDataTypesAsync(columnUserTypeIds);
+
+            var columnDatatypePairs = from column in mappedTableData.Columns
+                join dataType in dataTypes on column.UserTypeId equals dataType.Id
+            select new { column, dataType };
+
+            foreach (var item in columnDatatypePairs)
+            {
+                item.column.DataType = item.dataType.Name;
+            }
+
+            return mappedTableData;
+        }
+
+        /// <inheritdoc />
+        public async Task<TableDetailsDataVo> GetTableOrViewDetailsAsync(int tableId, char tableType)
+        {
+            var tableData = await _dbStructureRepository.GetTableOrViewDetailsAsync(tableId, tableType);
+
+            var mappedTableData = _mapper.Map<BaseTableModel, TableDetailsDataVo>(tableData);
+
+            var schema = await _schemaRepository.GetSchemaByIdAsync(mappedTableData.SchemaId);
+
+            mappedTableData.SchemaName = schema.Name;
+
             return mappedTableData;
         }
     }

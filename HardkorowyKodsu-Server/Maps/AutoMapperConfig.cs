@@ -10,9 +10,9 @@ namespace HardkorowyKodsu_Server.Maps
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<TableNameModel, TableNameVo>();
-                cfg.CreateMap<ViewNameModel, TableNameVo>();
-                cfg.CreateMap<BaseTableNameModel, TableNameVo>();
+                cfg.CreateMap<TableModel, TableNameVo>();
+                cfg.CreateMap<ViewModel, TableNameVo>();
+                cfg.CreateMap<BaseTableModel, TableNameVo>();
                 cfg.CreateMap<TableColumnModel, TableColumnVo>();
             });
 

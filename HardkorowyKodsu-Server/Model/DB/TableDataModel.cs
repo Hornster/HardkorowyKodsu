@@ -5,7 +5,7 @@ namespace HardkorowyKodsu_Server.Model.DB
     /// <summary>
     /// Represents a table in the database.
     /// </summary>
-    public class TableDataModel : TableNameModel
+    public class TableDataModel : TableModel
     {
         /// <summary>
         /// Structural description of the columns of the table.

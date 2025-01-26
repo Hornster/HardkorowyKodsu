@@ -13,6 +13,7 @@ namespace HardkorowyKodsu
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             HttpClient.Timeout = TimeSpan.FromSeconds(3);
+            HttpClient.BaseAddress = new Uri("https://localhost:44375/api/");
             var appBackbones = new AppBackbones();
             Application.Run(new MainView(appBackbones));
         }

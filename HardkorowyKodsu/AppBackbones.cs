@@ -16,9 +16,9 @@ namespace HardkorowyKodsu
         private List<BaseWinFormsViewModel> _vms = new List<BaseWinFormsViewModel>();
         public AppBackbones() 
         { 
-            _vms.Add(new TableDataViewModel());
+            _vms.Add(new TableDetailsViewModel());
             _vms.Add(new DbStructureViewModel());
-
+            _vms.Add(new TableColumnsViewModel());
         }
 
         public void Initialize(IMainFormsView mainView)

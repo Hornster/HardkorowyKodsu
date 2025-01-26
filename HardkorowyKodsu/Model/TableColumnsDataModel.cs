@@ -9,7 +9,7 @@ namespace HardkorowyKodsu.Model
     /// <summary>
     /// Represents a table. Contains info about the columns as well.
     /// </summary>
-    public class TableDataModel : TableNameModel
+    public class TableColumnsDataModel : TableNameModel
     {
         /// <summary>
         /// Structural description of the columns of the table.

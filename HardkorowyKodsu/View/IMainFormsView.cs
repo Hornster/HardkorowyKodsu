@@ -9,8 +9,11 @@ namespace HardkorowyKodsu.View
 {
     public interface IMainFormsView
     {
-        void ConnectTableNamesGridToVm(BaseWinFormsViewModel baseVm);
-        void ConnectTableDataGridToVm(BaseWinFormsViewModel baseVm);
-        
+        //void ConnectColumnDetailsGridToVm(BaseWinFormsViewModel vm);
+        void ConnectTableColumnsGridToVm(BaseWinFormsViewModel vm);
+        void ConnectTableNamesGridToVm(BaseWinFormsViewModel vm);
+        void ConnectTableDetailsGridToVm(BaseWinFormsViewModel vm);
+
+
     }
 }

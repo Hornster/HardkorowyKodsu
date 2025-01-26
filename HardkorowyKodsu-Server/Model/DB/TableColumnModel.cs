@@ -1,4 +1,6 @@
-﻿namespace HardkorowyKodsu_Server.Model.DB
+﻿using Microsoft.Identity.Client;
+
+namespace HardkorowyKodsu_Server.Model.DB
 {
     /// <summary>
     /// Represents a column in a table.
@@ -11,17 +13,13 @@
         /// </summary>
         public string Name { get; set; } = string.Empty;
         /// <summary>
-        /// The data type of the column. System defined.
-        /// </summary>
-        public string SystemType { get; set; } = string.Empty;
-        /// <summary>
         /// The data type of the column. User defined or defaults to SystemType.
         /// </summary>
-        public string UserType { get; set; }
+        public int UserTypeId { get; set; }
         /// <summary>
         /// The length of the column.
         /// </summary>
-        public int Length { get; set; }
+        public Int16 MaxLength { get; set; }
         /// <summary>
         /// Is the column nullable?
         /// </summary>
@@ -31,26 +29,13 @@
         /// </summary>
         public bool IsIdentity { get; set; }
         /// <summary>
-        /// Is the column a primary key?
+        /// Precision of the column's value, where applicable.
         /// </summary>
-        public bool IsPrimaryKey { get; set; }
+        public byte Precision { get; set; }
         /// <summary>
-        /// The index of the column.
+        /// Scale of the column's value, where applicable.
         /// </summary>
-        public int OrdinalPosition { get; set; }
-        /// <summary>
-        /// Is the column an autoincrement?
-        /// </summary>
-        public bool AutoIncrement { get; set; }
-        /// <summary>
-        /// Is the column a foreign key?
-        /// </summary>
-        public bool IsForeignKey { get; set; }
-        /// <summary>
-        /// The table that the foreign key references.
-        /// </summary>
-        public string ForeignKeyTable { get; set; } = string.Empty;
-        public string DefaultValue { get; set; } = string.Empty;
+        public byte Scale { get; set; }
         /// <summary>
         /// Id of the parent table/view this column belongs to.
         /// </summary>

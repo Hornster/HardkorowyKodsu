@@ -25,6 +25,7 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<IDbStructureRepository, DbStructureRepository>();
 builder.Services.AddScoped<IDbStructureService, DbStructureService>();
 builder.Services.AddScoped<ISchemaRepository, SchemaRepository>();
+builder.Services.AddScoped<IDataTypesRepository, DataTypesRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -36,10 +37,13 @@ ServicePointManager.ServerCertificateValidationCallback += (sender, certificate,
 
 builder.Services.AddAutoMapper(cfg =>
 {
-    cfg.CreateMap<TableNameModel, TableNameVo>();
-    cfg.CreateMap<ViewNameModel, TableNameVo>();
-    cfg.CreateMap<BaseTableNameModel, TableNameVo>();
+    cfg.CreateMap<TableModel, TableNameVo>();
+    cfg.CreateMap<ViewModel, TableNameVo>();
+    cfg.CreateMap<BaseTableModel, TableNameVo>();
+    cfg.CreateMap<BaseTableModel, TableDetailsDataVo>();
     cfg.CreateMap<TableColumnModel, TableColumnVo>();
+    cfg.CreateMap<TableDataModel, TableColumnsDataVo>();
+    cfg.CreateMap<TableDataModel, TableDetailsDataVo>();
 }, typeof(TableController).Assembly);
 
 var app = builder.Build();

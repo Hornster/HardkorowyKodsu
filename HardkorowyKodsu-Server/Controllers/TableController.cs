@@ -16,10 +16,31 @@ namespace HardkorowyKodsu_Server.Controllers
             _dbStructureService = dbStructureService;
         }
         [HttpGet]
-        public TableDataVo Get(int tableId)
+        public TableDetailsDataVo Get(int tableId, char tableType)
         {
-            var tableData = _dbStructureService.GetTableData(tableId);
+            var getTableDataTask = _dbStructureService.GetTableOrViewDetailsAsync(tableId, tableType);
+            getTableDataTask.Wait();
+
+            var tableData = getTableDataTask.Result;
             return tableData;
         }
+        [HttpGet]
+        [Route("columns")]
+        public TableColumnsDataVo GetColumns(int tableId)
+        {
+            var getStructureTask = _dbStructureService.GetTableColumnsDataAsync(tableId);
+            getStructureTask.Wait();
+            var structure = getStructureTask.Result;
+            return structure;
+        }
+        //[HttpGet]
+        //[Route("column")]
+        //public TableColumnVo GetColumn(int tableId, int columnId)
+        //{
+        //    var getStructureTask = _dbStructureService.GetColumnDataAsync(tableId, columnId);
+        //    getStructureTask.Wait();
+        //    var structure = getStructureTask.Result;
+        //    return structure;
+        //}
     }
 }

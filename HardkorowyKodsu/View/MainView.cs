@@ -11,23 +11,39 @@ namespace HardkorowyKodsu
         private BindingSource _tableColumnsBindingSource = new BindingSource();
 
         ICommand _getTableNamesCommand;
+        ICommand _getTableDetailsCommand;
+        ICommand _getTableColumnsCommand;
+        //ICommand _getColumnDetails;
         public MainView(AppBackbones appBackbones)
         {
             InitializeComponent();
             appBackbones.Initialize(this);
             this.TableNamesGrid.DataSource = _tableNamesBindingSource;
             this.TableDetailsGrid.DataSource = _tableDataBindingSource;
+            this.TableColumnsGrid.DataSource = _tableColumnsBindingSource;
         }
 
-        public void ConnectTableDataGridToVm(BaseWinFormsViewModel baseVm)
+        //public void ConnectColumnDetailsGridToVm(BaseWinFormsViewModel vm)
+        //{
+        //    //vm.BindSource(_tableColumnsBindingSource);
+        //    //_getColumnDetails = vm;
+        //}
+
+        public void ConnectTableColumnsGridToVm(BaseWinFormsViewModel vm)
         {
-            baseVm.BindSource(_tableDataBindingSource);
+            vm.BindSource(_tableColumnsBindingSource);
+            _getTableColumnsCommand = vm;
+        }
+        public void ConnectTableDetailsGridToVm(BaseWinFormsViewModel vm)
+        {
+            vm.BindSource(_tableDataBindingSource);
+            _getTableDetailsCommand = vm;
         }
 
-        public void ConnectTableNamesGridToVm(BaseWinFormsViewModel baseVm)
+        public void ConnectTableNamesGridToVm(BaseWinFormsViewModel vm)
         {
-            baseVm.BindSource(_tableNamesBindingSource);
-            _getTableNamesCommand = baseVm;
+            vm.BindSource(_tableNamesBindingSource);
+            _getTableNamesCommand = vm;
         }
 
         private void MainView_Load(object sender, EventArgs e)
@@ -37,7 +53,18 @@ namespace HardkorowyKodsu
 
         private void TableNamesGrid_SelectionChanged(object sender, EventArgs e)
         {
+            var mySender = sender as DataGridView;
 
+            if(mySender.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            var selectedRow = mySender.SelectedRows[0];
+            var selectedItem = selectedRow.DataBoundItem;
+
+            _getTableDetailsCommand.Execute(selectedItem);
+            _getTableColumnsCommand.Execute(selectedItem);
         }
     }
 }

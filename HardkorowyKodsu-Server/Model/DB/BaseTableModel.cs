@@ -2,7 +2,7 @@
 
 namespace HardkorowyKodsu_Server.Model.DB
 {
-    public abstract class BaseTableNameModel : BaseModel
+    public abstract class BaseTableModel : BaseModel
     {
         /// <summary>
         /// Name of the view/table.
@@ -21,5 +21,15 @@ namespace HardkorowyKodsu_Server.Model.DB
         /// </summary>
 
         public string TypeDescription { get; set; } = string.Empty;
+        /// <summary>
+        /// Time of creation of the table/view.
+        /// </summary>
+        public DateTime CreateDate { get; set; }
+        /// <summary>
+        /// Last modification time of the table/view.
+        /// </summary>
+        public DateTime ModifyDate { get; set; }
+        public bool IsPublished { get; set; }
+        public bool IsSchemaPublished { get; set; }
     }
 }

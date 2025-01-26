@@ -10,10 +10,23 @@ namespace HardkorowyKodsu_Server.Services.Interface
         /// <returns></returns>
         Task<DBStructureVo> GetStructure();
         /// <summary>
-        /// Retrieves column data of a table.
+        /// Retrieves details of structural data of a table.
+        /// </summary>
+        /// <param name="tableId"></param>
+        /// <returns></returns>
+        Task<TableDetailsDataVo> GetTableOrViewDetailsAsync(int tableId, char tableType);
+        /// <summary>
+        /// Retrieves columns data of a table.
         /// </summary>
         /// <param name="tableId">DB Id of the table.</param>
         /// <returns></returns>
-        TableDataVo GetTableData(int tableId);
+        Task<TableColumnsDataVo> GetTableColumnsDataAsync(int tableId);
+        ///// <summary>
+        ///// Retrieves given single column for given table.
+        ///// </summary>
+        ///// <param name="tableId">Id of the table.</param>
+        ///// <param name="columnId">Id of the column.</param>
+        ///// <returns></returns>
+        //Task<TableColumnVo> GetColumnDataAsync(int tableId, int columnId);
     }
 }

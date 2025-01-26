@@ -1,9 +1,9 @@
 ﻿namespace HardkorowyKodsu_Server.Model.VOs
 {
     /// <summary>
-    /// Viewobject containing the structure of a table.
+    /// Viewobject containing the columns of a table.
     /// </summary>
-    public class TableDataVo : TableNameVo
+    public class TableColumnsDataVo : TableNameVo
     {
         /// <summary>
         /// Structural description of the columns of the table.

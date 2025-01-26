@@ -30,10 +30,8 @@ namespace HardkorowyKodsu.ViewModel
         public abstract void ConnectEvents(IMainFormsView mainView);
         protected void SetData(IEnumerable<object> data)
         {
-            foreach(var item in data)
-            {
-                BindingSource.Add(item);
-            }
+            BindingSource.Clear();
+            BindingSource.DataSource = data;
         }
 
     }
