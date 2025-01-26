@@ -6,5 +6,6 @@ namespace HardkorowyKodsu_Server.Model.DB
     /// </summary>
     public class TableNameModel : BaseTableNameModel
     {
+
     }
 }

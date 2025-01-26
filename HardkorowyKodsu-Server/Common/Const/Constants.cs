@@ -5,10 +5,12 @@
         public const string SysTablesName = "sys.tables";
         public const string SysViewsName = "sys.views";
         public const string SysColumnsName = "sys.columns";
+        public const string SysSchemasName = "sys.schemas";
 
         public const string SysTablesObjectIdName = "object_id";
         public const string SysTablesNameName = "name";
         public const string SysTablesSchemaIdName = "schema_id";
+        public const string SysTablesSchemaNameCustom = "schema_name";
         public const string SysTablesTypeName = "type";
         public const string SysTablesTypeDescName = "type_desc";
 
@@ -23,6 +25,5 @@
         public const string SysColumnsOrdinalPositionName = "ordinal_position";
         public const string SysColumnsDefaultValueName = "default_value";
         public const string SysColumnsParentObjectIdName = "object_id";
-
     }
 }

@@ -24,6 +24,7 @@ builder.Services.AddDbContext<HardkorowyKodsuDbContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddScoped<IDbStructureRepository, DbStructureRepository>();
 builder.Services.AddScoped<IDbStructureService, DbStructureService>();
+builder.Services.AddScoped<ISchemaRepository, SchemaRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

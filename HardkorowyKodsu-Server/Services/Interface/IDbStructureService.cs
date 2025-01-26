@@ -8,7 +8,7 @@ namespace HardkorowyKodsu_Server.Services.Interface
         /// Retrieves names of all tables and views in the database.
         /// </summary>
         /// <returns></returns>
-        DBStructureVo GetStructure();
+        Task<DBStructureVo> GetStructure();
         /// <summary>
         /// Retrieves column data of a table.
         /// </summary>

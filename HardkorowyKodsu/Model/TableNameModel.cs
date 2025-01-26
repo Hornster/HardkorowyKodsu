@@ -1,10 +1,17 @@
-﻿namespace HardkorowyKodsu_Server.Model.VOs
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HardkorowyKodsu.Model
 {
     /// <summary>
-    /// A thin viewobject containing the name and type of a table or view, used to retrieve structure of table or view its instance refers to.
-    /// </summary>
-    public class TableNameVo : BaseVo
+     /// A thin object containing the name and type of a table.
+     /// </summary>
+    public class TableNameModel : BaseModel
     {
+
         /// <summary>
         /// The id of the schema the table belongs to.
         /// </summary>

@@ -8,7 +8,7 @@ namespace HardkorowyKodsu_Server.Repos.Interface
         /// Retrieves names of all tables and views in the database.
         /// </summary>
         /// <returns></returns>
-        Task<List<BaseTableNameModel>> GetStructure();
+        Task<List<BaseTableNameModel>> GetStructureAsync();
         /// <summary>
         /// Retrieves column data of a table.
         /// </summary>

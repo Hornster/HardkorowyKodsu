@@ -2,6 +2,7 @@ namespace HardkorowyKodsu
 {
     internal static class Program
     {
+        public static HttpClient HttpClient { get; private set; } = new HttpClient();
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -11,7 +12,9 @@ namespace HardkorowyKodsu
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainView());
+            HttpClient.Timeout = TimeSpan.FromSeconds(3);
+            var appBackbones = new AppBackbones();
+            Application.Run(new MainView(appBackbones));
         }
     }
 }

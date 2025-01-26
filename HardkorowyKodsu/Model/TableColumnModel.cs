@@ -1,11 +1,16 @@
-﻿namespace HardkorowyKodsu_Server.Model.VOs
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HardkorowyKodsu.Model
 {
     /// <summary>
-    /// Viewobject containing the structure of a table column.
+    /// Represents a column in a table or view.
     /// </summary>
-    public class TableColumnVo : BaseVo
+    public class TableColumnModel : BaseModel
     {
-
         /// <summary>
         /// The name of the column.
         /// </summary>
@@ -55,6 +60,5 @@
         /// Id of the parent table/view this column belongs to.
         /// </summary>
         public int ParentObjectId { get; set; }
-
     }
 }

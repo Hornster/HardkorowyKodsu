@@ -1,6 +1,5 @@
 ﻿using HardkorowyKodsu_Server.Common.Const;
 using HardkorowyKodsu_Server.Model.DB;
-using HardkorowyKodsu_Server.Model.DB;
 using Microsoft.EntityFrameworkCore;
 
 namespace HardkorowyKodsu_Server.Ctx
@@ -12,7 +11,8 @@ namespace HardkorowyKodsu_Server.Ctx
         }
         public DbSet<TableNameModel> TableNameModels { get; set; }
         public DbSet<ViewNameModel> ViewNameModels { get; set; }
-        public DbSet<TableColumnModel> TableColumnModel { get; set; }
+        public DbSet<TableColumnModel> TableColumnModels { get; set; }
+        public DbSet<SchemaShortModel> SchemaShortModels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,7 @@ namespace HardkorowyKodsu_Server.Ctx
                 tnmo.Property(tnm => tnm.Name).HasColumnName(Constants.SysTablesNameName);
                 tnmo.Property(tnm => tnm.Type).HasColumnName(Constants.SysTablesTypeName);
                 tnmo.Property(tnm => tnm.TypeDescription).HasColumnName(Constants.SysTablesTypeDescName);
+                tnmo.Property(tnm => tnm.SchemaId).HasColumnName(Constants.SysTablesSchemaIdName);
             });
 
             modelBuilder.Entity<ViewNameModel>(vnmo =>
@@ -32,6 +33,7 @@ namespace HardkorowyKodsu_Server.Ctx
                 vnmo.Property(vnm => vnm.Name).HasColumnName(Constants.SysTablesNameName);
                 vnmo.Property(vnm => vnm.Type).HasColumnName(Constants.SysTablesTypeName);
                 vnmo.Property(vnm => vnm.TypeDescription).HasColumnName(Constants.SysTablesTypeDescName);
+                vnmo.Property(vnm => vnm.SchemaId).HasColumnName(Constants.SysTablesSchemaIdName);
             });
 
             modelBuilder.Entity<TableColumnModel>(tcmo =>
@@ -48,6 +50,13 @@ namespace HardkorowyKodsu_Server.Ctx
                 tcmo.Property(tnm => tnm.OrdinalPosition).HasColumnName(Constants.SysColumnsOrdinalPositionName);
                 tcmo.Property(tnm => tnm.DefaultValue).HasColumnName(Constants.SysColumnsDefaultValueName);
                 tcmo.Property(tnm => tnm.ParentObjectId).HasColumnName(Constants.SysColumnsParentObjectIdName);
+            });
+
+            modelBuilder.Entity<SchemaShortModel>(smso =>
+            {
+                smso.ToTable(Constants.SysSchemasName);
+                smso.Property(sms => sms.Id).HasColumnName(Constants.SysTablesSchemaIdName);
+                smso.Property(sms => sms.Name).HasColumnName(Constants.SysTablesNameName);
             });
         }
 

@@ -16,7 +16,9 @@ namespace HardkorowyKodsu_Server.Controllers
         [HttpGet]
         public DBStructureVo Get()
         {
-            var result = _dbStructureService.GetStructure();
+            var resultTask = _dbStructureService.GetStructure();
+            resultTask.Wait();
+            var result = resultTask.Result;
             return result;
         }
     }
