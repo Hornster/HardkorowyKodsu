@@ -66,6 +66,8 @@ namespace HardkorowyKodsu_Server.Services
                 item.column.DataType = item.dataType.Name;
             }
 
+            mappedTableData.Columns = mappedTableData.Columns.OrderBy(c => c.Name).ToList();
+
             return mappedTableData;
         }
 

@@ -56,20 +56,7 @@ namespace HardkorowyKodsu_Server.Repos
                 , {Constants.SysDataTypesScaleName}
                FROM {Constants.SysColumnsName} 
                WHERE {Constants.SysColumnsParentObjectIdName} = {ColumnParentObjectIdParamName}";
-        private const string ColumnIdParamName = "@columnId";
-        private readonly string _getTableColumnQuery =
-            @$"SELECT {Constants.SysTablesTypeName}
-                , {Constants.SysColumnsMaxLengthName}
-                , {Constants.SysColumnsIsNullableName}
-                , {Constants.SysColumnsIsIdentityName}
-                , {Constants.SysTablesColumnIdName}
-                , {Constants.SysTablesUserDataTypeIdName}
-                , {Constants.SysColumnsParentObjectIdName}
-                , {Constants.SysDataTypesPrecisionName}
-                , {Constants.SysDataTypesScaleName}
-            FROM {Constants.SysColumnsName} 
-            WHERE {Constants.SysColumnsParentObjectIdName} = {ColumnParentObjectIdParamName}
-                AND {Constants.SysColumnsColumnIdName} = {ColumnIdParamName}";
+
 
 
         public DbStructureRepository(IOptions<AppSettingsConfigModel> settings, HardkorowyKodsuDbContext dbContext) 
@@ -91,6 +78,8 @@ namespace HardkorowyKodsu_Server.Repos
 
             result.AddRange(tableNames);
             result.AddRange(viewNames);
+
+            result = result.OrderBy(x => x.Name).ToList();
 
             return result;
         }
@@ -124,17 +113,6 @@ namespace HardkorowyKodsu_Server.Repos
             var tableColumns = await tableColumnDbSet.FromSql(formattedQuery).ToListAsync();
 
             return new TableDataModel { Columns = tableColumns };
-        }
-
-        public async Task<TableColumnModel> GetColumnDataAsync(int tableId, int columnId)
-        {
-            var tableColumnDbSet = _dbContext.TableColumnModels;
-            var paramTableId = new SqlParameter(ColumnParentObjectIdParamName, tableId);
-            var paramColumnId = new SqlParameter(ColumnIdParamName, columnId);
-            var formattedQuery = FormattableStringFactory.Create(_getTableColumnQuery, paramTableId, paramColumnId);
-            var tableColumn = await tableColumnDbSet.FromSql(formattedQuery).FirstAsync();
-
-            return tableColumn;
         }
     }
 }

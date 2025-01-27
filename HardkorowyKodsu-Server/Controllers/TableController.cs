@@ -33,14 +33,5 @@ namespace HardkorowyKodsu_Server.Controllers
             var structure = getStructureTask.Result;
             return structure;
         }
-        //[HttpGet]
-        //[Route("column")]
-        //public TableColumnVo GetColumn(int tableId, int columnId)
-        //{
-        //    var getStructureTask = _dbStructureService.GetColumnDataAsync(tableId, columnId);
-        //    getStructureTask.Wait();
-        //    var structure = getStructureTask.Result;
-        //    return structure;
-        //}
     }
 }

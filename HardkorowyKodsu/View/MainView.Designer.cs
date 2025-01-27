@@ -149,6 +149,7 @@
             TableDetailsGrid.AllowUserToAddRows = false;
             TableDetailsGrid.AllowUserToDeleteRows = false;
             TableDetailsGrid.AllowUserToOrderColumns = true;
+            TableDetailsGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             TableDetailsGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             TableDetailsGrid.Location = new Point(0, 32);
             TableDetailsGrid.Name = "TableDetailsGrid";

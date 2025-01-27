@@ -12,8 +12,6 @@ namespace HardkorowyKodsu.ViewModel
 {
     public abstract class BaseWinFormsViewModel : ICommand
     {
-        //public event EventHandler<DataTable> GetDataCallback;
-
         protected BindingSource BindingSource { get; set; }
 
         public event EventHandler CanExecuteChanged;

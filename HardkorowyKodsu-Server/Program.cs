@@ -34,17 +34,17 @@ builder.Services.AddSwaggerGen();
 //REMOVE ON PROD!! :j
 ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
-
-builder.Services.AddAutoMapper(cfg =>
-{
-    cfg.CreateMap<TableModel, TableNameVo>();
-    cfg.CreateMap<ViewModel, TableNameVo>();
-    cfg.CreateMap<BaseTableModel, TableNameVo>();
-    cfg.CreateMap<BaseTableModel, TableDetailsDataVo>();
-    cfg.CreateMap<TableColumnModel, TableColumnVo>();
-    cfg.CreateMap<TableDataModel, TableColumnsDataVo>();
-    cfg.CreateMap<TableDataModel, TableDetailsDataVo>();
-}, typeof(TableController).Assembly);
+AutoMapperConfig.RegisterMappings(builder);
+//builder.Services.AddAutoMapper(cfg =>
+//{
+//    cfg.CreateMap<TableModel, TableNameVo>();
+//    cfg.CreateMap<ViewModel, TableNameVo>();
+//    cfg.CreateMap<BaseTableModel, TableNameVo>();
+//    cfg.CreateMap<BaseTableModel, TableDetailsDataVo>();
+//    cfg.CreateMap<TableColumnModel, TableColumnVo>();
+//    cfg.CreateMap<TableDataModel, TableColumnsDataVo>();
+//    cfg.CreateMap<TableDataModel, TableDetailsDataVo>();
+//}, typeof(TableController).Assembly);
 
 var app = builder.Build();
 
