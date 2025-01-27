@@ -21,12 +21,5 @@ namespace HardkorowyKodsu_Server.Services.Interface
         /// <param name="tableId">DB Id of the table.</param>
         /// <returns></returns>
         Task<TableColumnsDataVo> GetTableColumnsDataAsync(int tableId);
-        ///// <summary>
-        ///// Retrieves given single column for given table.
-        ///// </summary>
-        ///// <param name="tableId">Id of the table.</param>
-        ///// <param name="columnId">Id of the column.</param>
-        ///// <returns></returns>
-        //Task<TableColumnVo> GetColumnDataAsync(int tableId, int columnId);
     }
 }

@@ -64,6 +64,7 @@ namespace HardkorowyKodsu_Server.Repos
             _dbContext = dbContext;
             _settings = settings;
         }
+        /// <inheritdoc/>
         public async Task<List<BaseTableModel>> GetStructureAsync()
         {
             var tableNameDbSet = _dbContext.TableNameModels;
@@ -83,6 +84,7 @@ namespace HardkorowyKodsu_Server.Repos
 
             return result;
         }
+
         private async Task<BaseTableModel> GetTableDetailsAsync(int tableId, string query)
         {
             var tableColumnDbSet = _dbContext.TableNameModels;
@@ -92,6 +94,7 @@ namespace HardkorowyKodsu_Server.Repos
             return tableDetails;
         }
 
+        /// <inheritdoc/>
         public async Task<BaseTableModel> GetTableOrViewDetailsAsync(int tableId, char tableType)
         {
             switch(tableType)
@@ -105,6 +108,7 @@ namespace HardkorowyKodsu_Server.Repos
             }
         }
 
+        /// <inheritdoc/>
         public async Task<TableDataModel> GetTableColumnsAsync(int tableId)
         {
             var tableColumnDbSet = _dbContext.TableColumnModels;

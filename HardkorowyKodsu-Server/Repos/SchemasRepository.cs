@@ -22,6 +22,7 @@ namespace HardkorowyKodsu_Server.Repos
         {
             _dbContext = dbContext;
         }
+        /// <inheritdoc/>
         public async Task<List<SchemaShortModel>> GetAllSchemasAsync()
         {
             var schemasDbSet = _dbContext.SchemaShortModels;
@@ -30,6 +31,7 @@ namespace HardkorowyKodsu_Server.Repos
 
             return schemas;
         }
+        /// <inheritdoc/>
         public async Task<SchemaShortModel> GetSchemaByIdAsync(int schemaId)
         {
             var schemasDbSet = _dbContext.SchemaShortModels;
