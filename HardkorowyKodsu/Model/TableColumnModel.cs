@@ -24,14 +24,6 @@ namespace HardkorowyKodsu.Model
         /// </summary>
         public int MaxLength { get; set; }
         /// <summary>
-        /// Is the column nullable?
-        /// </summary>
-        public bool IsNullable { get; set; }
-        /// <summary>
-        /// Is the column an identity column?
-        /// </summary>
-        public bool IsIdentity { get; set; }
-        /// <summary>
         /// Precision of the column's value, where applicable.
         /// </summary>
         public int Precision { get; set; }
@@ -39,27 +31,14 @@ namespace HardkorowyKodsu.Model
         /// Scale of the column's value, where applicable.
         /// </summary>
         public int Scale { get; set; }
-        ///// <summary>
-        ///// Is the column a primary key?
-        ///// </summary>
-        //public bool IsPrimaryKey { get; set; }
-        ///// <summary>
-        ///// The index of the column.
-        ///// </summary>
-        //public int OrdinalPosition { get; set; }
-        ///// <summary>
-        ///// Is the column an autoincrement?
-        ///// </summary>
-        //public bool AutoIncrement { get; set; }
-        ///// <summary>
-        ///// Is the column a foreign key?
-        ///// </summary>
-        //public bool IsForeignKey { get; set; }
-        ///// <summary>
-        ///// The table that the foreign key references.
-        ///// </summary>
-        //public string ForeignKeyTable { get; set; } = string.Empty;
-        //public string DefaultValue { get; set; } = string.Empty;
+        /// <summary>
+        /// Is the column nullable?
+        /// </summary>
+        public bool IsNullable { get; set; }
+        /// <summary>
+        /// Is the column an identity column?
+        /// </summary>
+        public bool IsIdentity { get; set; }
         /// <summary>
         /// Id of the parent table/view this column belongs to.
         /// </summary>

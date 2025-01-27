@@ -13,7 +13,6 @@ namespace HardkorowyKodsu
         ICommand _getTableNamesCommand;
         ICommand _getTableDetailsCommand;
         ICommand _getTableColumnsCommand;
-        //ICommand _getColumnDetails;
         public MainView(AppBackbones appBackbones)
         {
             InitializeComponent();
@@ -22,12 +21,6 @@ namespace HardkorowyKodsu
             this.TableDetailsGrid.DataSource = _tableDataBindingSource;
             this.TableColumnsGrid.DataSource = _tableColumnsBindingSource;
         }
-
-        //public void ConnectColumnDetailsGridToVm(BaseWinFormsViewModel vm)
-        //{
-        //    //vm.BindSource(_tableColumnsBindingSource);
-        //    //_getColumnDetails = vm;
-        //}
 
         public void ConnectTableColumnsGridToVm(BaseWinFormsViewModel vm)
         {
@@ -55,12 +48,44 @@ namespace HardkorowyKodsu
         {
             var mySender = sender as DataGridView;
 
-            if(mySender.SelectedRows.Count == 0)
+            if (mySender.SelectedRows.Count == 0)
             {
                 return;
             }
 
             var selectedRow = mySender.SelectedRows[0];
+            CallTableDataRetrievalCommands(selectedRow);
+        }
+
+        private void TableNamesGridRefreshButton_Click(object sender, EventArgs e)
+        {
+            var grid = this.TableNamesGrid;
+            foreach (DataGridViewRow row in grid.Rows)
+            {
+                row.Selected = false;
+            }
+            foreach (DataGridViewCell cell in grid.SelectedCells)
+            {
+                cell.Selected = false;
+            }
+            _getTableNamesCommand.Execute(null);
+        }
+
+        private void TableNamesGrid_CurrentCellChanged(object sender, EventArgs e)
+        {
+            var mySender = sender as DataGridView;
+            
+            if (mySender.SelectedCells.Count == 0)
+            {
+                return;
+            }
+
+            var selectedCell = mySender.SelectedCells[0];
+            var selectedRow = mySender.Rows[selectedCell.RowIndex];
+            CallTableDataRetrievalCommands(selectedRow);
+        }
+        private void CallTableDataRetrievalCommands(DataGridViewRow selectedRow)
+        {
             var selectedItem = selectedRow.DataBoundItem;
 
             _getTableDetailsCommand.Execute(selectedItem);

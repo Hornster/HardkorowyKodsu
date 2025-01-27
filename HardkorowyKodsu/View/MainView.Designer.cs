@@ -30,11 +30,13 @@
         {
             TableNamesGrid = new DataGridView();
             TableNamesPanel = new Panel();
-            TableNamesGridSearchBox = new TextBox();
+            TableNamesGridRefreshButton = new Button();
+            TablesAndViewsLabel = new Label();
             TableColumnsGrid = new DataGridView();
-            TableDataGridSearchBox = new TextBox();
             TableDataSplitContainer = new SplitContainer();
+            SelectedTableViewDetailsLabel = new Label();
             TableDetailsGrid = new DataGridView();
+            SelectedTableViewColumnsLabel = new Label();
             tableLayoutPanel1 = new TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)TableNamesGrid).BeginInit();
             TableNamesPanel.SuspendLayout();
@@ -51,52 +53,67 @@
             // 
             TableNamesGrid.AccessibleDescription = "A grid control showing data of selected view or table.";
             TableNamesGrid.AccessibleName = "Data View Grid";
+            TableNamesGrid.AllowUserToAddRows = false;
+            TableNamesGrid.AllowUserToDeleteRows = false;
             TableNamesGrid.AllowUserToOrderColumns = true;
             TableNamesGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             TableNamesGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            TableNamesGrid.Location = new Point(0, 35);
+            TableNamesGrid.Location = new Point(0, 32);
+            TableNamesGrid.MultiSelect = false;
             TableNamesGrid.Name = "TableNamesGrid";
-            TableNamesGrid.Size = new Size(407, 503);
+            TableNamesGrid.ReadOnly = true;
+            TableNamesGrid.RowTemplate.ReadOnly = true;
+            TableNamesGrid.Size = new Size(407, 506);
             TableNamesGrid.TabIndex = 0;
+            TableNamesGrid.CurrentCellChanged += TableNamesGrid_CurrentCellChanged;
             TableNamesGrid.SelectionChanged += TableNamesGrid_SelectionChanged;
             // 
             // TableNamesPanel
             // 
             TableNamesPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            TableNamesPanel.Controls.Add(TableNamesGridSearchBox);
+            TableNamesPanel.Controls.Add(TableNamesGridRefreshButton);
+            TableNamesPanel.Controls.Add(TablesAndViewsLabel);
             TableNamesPanel.Controls.Add(TableNamesGrid);
             TableNamesPanel.Location = new Point(3, 3);
             TableNamesPanel.Name = "TableNamesPanel";
             TableNamesPanel.Size = new Size(410, 541);
             TableNamesPanel.TabIndex = 1;
             // 
-            // TableNamesGridSearchBox
+            // TableNamesGridRefreshButton
             // 
-            TableNamesGridSearchBox.Dock = DockStyle.Top;
-            TableNamesGridSearchBox.Location = new Point(0, 0);
-            TableNamesGridSearchBox.Name = "TableNamesGridSearchBox";
-            TableNamesGridSearchBox.Size = new Size(410, 23);
-            TableNamesGridSearchBox.TabIndex = 1;
+            TableNamesGridRefreshButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            TableNamesGridRefreshButton.Location = new Point(332, 3);
+            TableNamesGridRefreshButton.Name = "TableNamesGridRefreshButton";
+            TableNamesGridRefreshButton.Size = new Size(75, 23);
+            TableNamesGridRefreshButton.TabIndex = 2;
+            TableNamesGridRefreshButton.Text = "Refresh";
+            TableNamesGridRefreshButton.UseVisualStyleBackColor = true;
+            TableNamesGridRefreshButton.Click += TableNamesGridRefreshButton_Click;
+            // 
+            // TablesAndViewsLabel
+            // 
+            TablesAndViewsLabel.AutoSize = true;
+            TablesAndViewsLabel.Location = new Point(3, 7);
+            TablesAndViewsLabel.Name = "TablesAndViewsLabel";
+            TablesAndViewsLabel.Size = new Size(98, 15);
+            TablesAndViewsLabel.TabIndex = 1;
+            TablesAndViewsLabel.Text = "Tables and Views:";
             // 
             // TableColumnsGrid
             // 
             TableColumnsGrid.AccessibleDescription = "A grid control showing data of selected view or table.";
             TableColumnsGrid.AccessibleName = "Data View Grid";
+            TableColumnsGrid.AllowUserToAddRows = false;
+            TableColumnsGrid.AllowUserToDeleteRows = false;
             TableColumnsGrid.AllowUserToOrderColumns = true;
             TableColumnsGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             TableColumnsGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             TableColumnsGrid.Location = new Point(3, 29);
             TableColumnsGrid.Name = "TableColumnsGrid";
+            TableColumnsGrid.ReadOnly = true;
+            TableColumnsGrid.RowTemplate.ReadOnly = true;
             TableColumnsGrid.Size = new Size(405, 225);
             TableColumnsGrid.TabIndex = 0;
-            // 
-            // TableDataGridSearchBox
-            // 
-            TableDataGridSearchBox.Dock = DockStyle.Top;
-            TableDataGridSearchBox.Location = new Point(0, 0);
-            TableDataGridSearchBox.Name = "TableDataGridSearchBox";
-            TableDataGridSearchBox.Size = new Size(412, 23);
-            TableDataGridSearchBox.TabIndex = 1;
             // 
             // TableDataSplitContainer
             // 
@@ -107,24 +124,47 @@
             // 
             // TableDataSplitContainer.Panel1
             // 
+            TableDataSplitContainer.Panel1.Controls.Add(SelectedTableViewDetailsLabel);
             TableDataSplitContainer.Panel1.Controls.Add(TableDetailsGrid);
             // 
             // TableDataSplitContainer.Panel2
             // 
-            TableDataSplitContainer.Panel2.Controls.Add(TableDataGridSearchBox);
+            TableDataSplitContainer.Panel2.Controls.Add(SelectedTableViewColumnsLabel);
             TableDataSplitContainer.Panel2.Controls.Add(TableColumnsGrid);
             TableDataSplitContainer.Size = new Size(412, 541);
             TableDataSplitContainer.SplitterDistance = 280;
             TableDataSplitContainer.TabIndex = 2;
             // 
+            // SelectedTableViewDetailsLabel
+            // 
+            SelectedTableViewDetailsLabel.AutoSize = true;
+            SelectedTableViewDetailsLabel.Location = new Point(3, 7);
+            SelectedTableViewDetailsLabel.Name = "SelectedTableViewDetailsLabel";
+            SelectedTableViewDetailsLabel.Size = new Size(149, 15);
+            SelectedTableViewDetailsLabel.TabIndex = 1;
+            SelectedTableViewDetailsLabel.Text = "Selected table/view details:";
+            // 
             // TableDetailsGrid
             // 
+            TableDetailsGrid.AllowUserToAddRows = false;
+            TableDetailsGrid.AllowUserToDeleteRows = false;
+            TableDetailsGrid.AllowUserToOrderColumns = true;
             TableDetailsGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            TableDetailsGrid.Dock = DockStyle.Fill;
-            TableDetailsGrid.Location = new Point(0, 0);
+            TableDetailsGrid.Location = new Point(0, 32);
             TableDetailsGrid.Name = "TableDetailsGrid";
-            TableDetailsGrid.Size = new Size(412, 280);
+            TableDetailsGrid.ReadOnly = true;
+            TableDetailsGrid.RowTemplate.ReadOnly = true;
+            TableDetailsGrid.Size = new Size(412, 248);
             TableDetailsGrid.TabIndex = 0;
+            // 
+            // SelectedTableViewColumnsLabel
+            // 
+            SelectedTableViewColumnsLabel.AutoSize = true;
+            SelectedTableViewColumnsLabel.Location = new Point(3, 11);
+            SelectedTableViewColumnsLabel.Name = "SelectedTableViewColumnsLabel";
+            SelectedTableViewColumnsLabel.Size = new Size(158, 15);
+            SelectedTableViewColumnsLabel.TabIndex = 1;
+            SelectedTableViewColumnsLabel.Text = "Selected table/view columns";
             // 
             // tableLayoutPanel1
             // 
@@ -156,6 +196,7 @@
             TableNamesPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)TableColumnsGrid).EndInit();
             TableDataSplitContainer.Panel1.ResumeLayout(false);
+            TableDataSplitContainer.Panel1.PerformLayout();
             TableDataSplitContainer.Panel2.ResumeLayout(false);
             TableDataSplitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)TableDataSplitContainer).EndInit();
@@ -169,11 +210,14 @@
 
         private DataGridView TableNamesGrid;
         private Panel TableNamesPanel;
-        private TextBox TableNamesGridSearchBox;
         private DataGridView TableColumnsGrid;
         private TextBox TableDataGridSearchBox;
         private SplitContainer TableDataSplitContainer;
         private DataGridView TableDetailsGrid;
         private TableLayoutPanel tableLayoutPanel1;
+        private Label TablesAndViewsLabel;
+        private Button TableNamesGridRefreshButton;
+        private Label SelectedTableViewDetailsLabel;
+        private Label SelectedTableViewColumnsLabel;
     }
 }

@@ -39,27 +39,6 @@
         /// </summary>
         public byte Scale { get; set; }
 
-        ///// <summary>
-        ///// Is the column a primary key?
-        ///// </summary>
-        //public bool IsPrimaryKey { get; set; }
-        ///// <summary>
-        ///// The index of the column.
-        ///// </summary>
-        //public int OrdinalPosition { get; set; }
-        ///// <summary>
-        ///// Is the column an autoincrement?
-        ///// </summary>
-        //public bool AutoIncrement { get; set; }
-        ///// <summary>
-        ///// Is the column a foreign key?
-        ///// </summary>
-        //public bool IsForeignKey { get; set; }
-        ///// <summary>
-        ///// The table that the foreign key references.
-        ///// </summary>
-        //public string ForeignKeyTable { get; set; } = string.Empty;
-        //public string DefaultValue { get; set; } = string.Empty;
         /// <summary>
         /// Id of the parent table/view this column belongs to.
         /// </summary>
